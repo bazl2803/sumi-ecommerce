@@ -1,8 +1,16 @@
 import clsx from "clsx";
 import { SurfaceRecipe } from "./surface.recipes";
 
-interface SurfaceProps extends React.ComponentPropsWithRef<"div"> {}
+interface SurfaceProps extends React.ComponentPropsWithRef<"div"> {
+  variant?: "solid" | "outline" | "ghost";
+}
 
-export const Surface: React.FC<SurfaceProps> = ({ className, ...props }) => {
-  return <div className={clsx(SurfaceRecipe, className)} {...props} />;
+export const Surface: React.FC<SurfaceProps> = ({
+  className,
+  variant,
+  ...props
+}) => {
+  return (
+    <div className={clsx(SurfaceRecipe({ variant }), className)} {...props} />
+  );
 };
