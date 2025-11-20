@@ -1,10 +1,31 @@
-import { Button, Group, Input, PageHeader, Toolbar, Typography } from "@/components";
-import { IconArrowsSort, IconFilter, IconPlus } from "@tabler/icons-react";
+import {
+  Button,
+  Group,
+  Hint,
+  Input,
+  PageHeader,
+  Stat,
+  StatLabel,
+  StatValue,
+  Tile,
+  TileContent,
+  TileHeader,
+  Toolbar,
+  Typography,
+} from "@/components";
+import {
+  IconArrowsSort,
+  IconFilter,
+  IconPackage,
+  IconPlus,
+} from "@tabler/icons-react";
+import { css } from "panda/css";
+import { flex } from "panda/patterns";
 
 export default function ProductsPage() {
   return (
     <>
-      <PageHeader>
+      <PageHeader className={flex({ direction: "column", gap: 4 })}>
         <Toolbar>
           <Typography role="title1" emphasized>
             Productos
@@ -29,6 +50,69 @@ export default function ProductsPage() {
             </Button>
           </Group>
         </Toolbar>
+
+        <div
+          className={css({
+            display: "grid",
+            gridTemplateColumns: {
+              base: "repeat(auto-fit, minmax(min(300px, 100%), 1fr))",
+              lg: "repeat(4, 1fr)",
+            },
+            gap: 4,
+          })}
+        >
+          <Tile surface="outline">
+            <TileHeader>
+              <StatLabel>Productos</StatLabel>
+              <IconPackage />
+            </TileHeader>
+            <TileContent>
+              <Stat>
+                <StatValue>2,934</StatValue>
+                <Hint>Totales Activos</Hint>
+              </Stat>
+            </TileContent>
+          </Tile>
+
+          <Tile surface="outline">
+            <TileHeader>
+              <StatLabel>Productos</StatLabel>
+              <IconPackage />
+            </TileHeader>
+            <TileContent>
+              <Stat>
+                <StatValue>2,934</StatValue>
+                <Hint>Totales Activos</Hint>
+              </Stat>
+            </TileContent>
+          </Tile>
+
+          <Tile surface="outline">
+            <TileHeader>
+              <StatLabel>Productos</StatLabel>
+              <IconPackage />
+            </TileHeader>
+            <TileContent>
+              <Stat>
+                <StatValue>2,934</StatValue>
+                <Hint>Totales Activos</Hint>
+              </Stat>
+            </TileContent>
+          </Tile>
+
+          <Tile surface="outline">
+            <TileHeader>
+              <StatLabel>Productos</StatLabel>
+              <IconPackage />
+            </TileHeader>
+            <TileContent>
+              <Stat>
+                <StatValue>2,934</StatValue>
+                <Hint>Totales Activos</Hint>
+              </Stat>
+            </TileContent>
+          </Tile>
+        </div>
       </PageHeader>
     </>
   );
