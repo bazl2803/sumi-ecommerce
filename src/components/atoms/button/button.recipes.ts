@@ -12,12 +12,14 @@ export const ButtonRecipe = cva({
   variants: {
     variant: {
       primary: {
-        backgroundColor: { base: "primary", _osDark: "secondary" },
+        backgroundColor: { base: "black", _osDark: "white" },
         color: { base: "white", _osDark: "black" },
+        outline: "1px solid",
+        outlineColor: { base: "neutral.200", _osDark: "neutral.700" },
       },
       secondary: {
-        backgroundColor: { base: "primary/10", _osDark: "neutral.900" },
-        color: { base: "primary", _osDark: "white" },
+        backgroundColor: { base: "neutral.100", _osDark: "neutral.900" },
+        color: { base: "black", _osDark: "white" },
       },
       ghost: {
         backgroundColor: "transparent",
@@ -30,35 +32,48 @@ export const ButtonRecipe = cva({
       },
       link: {
         backgroundColor: "transparent",
-        color: { base: "primary", _osDark: "secondary" },
+        color: { base: "black", _osDark: "white" },
       },
       outline: {
         backgroundColor: "transparent",
-        color: { base: "primary", _osDark: "secondary" },
+        color: { base: "black", _osDark: "white" },
         outline: "1px solid",
-        outlineColor: { base: "primary/50", _osDark: "secondary/50" },
+        outlineColor: { base: "neutral.200", _osDark: "neutral.700" },
       },
     },
     size: {
       sm: {
         paddingX: 2,
         paddingY: 1,
-        fontSize: "xs",
+        fontSize: "sm",
+        height: "36px"
       },
       md: {
         paddingX: 3,
         paddingY: 2,
-        fontSize: "sm",
+        fontSize: "md",
+        height: "40px"
       },
       lg: {
         paddingX: 4,
         paddingY: 3,
-        fontSize: "md",
+        fontSize: "lg",
+        height: "56px"
       },
     },
   },
   defaultVariants: {
     variant: "primary",
     size: "md",
+  },
+});
+
+export const ButtonLabelRecipe = cva({
+  base: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    fontWeight: 500,
+    gap: 2,
   },
 });

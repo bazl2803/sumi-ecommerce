@@ -12,7 +12,7 @@ export const PageRecipe = sva({
       paddingBlock: 2,
     },
     container: {
-      borderRadius: "2xl",
+      borderRadius: "xl",
       maxWidth: "7xl",
       margin: "auto",
       height: "full",
@@ -25,14 +25,14 @@ export const PageRecipe = sva({
 });
 
 export const PageHeaderRecipe = css({
-  paddingX: 6,
-  paddingY: 2,
+  paddingX: 4,
+  paddingY: 4,
   background: {
     base: "linear-gradient(white 30%,transparent 100%)",
     _osDark: "linear-gradient(black 30%,transparent 100%)",
   },
   overflow: "hidden",
-  borderTopRadius: "2xl",
+  borderTopRadius: "xl",
   position: "sticky",
   top: 0,
   left: 0,

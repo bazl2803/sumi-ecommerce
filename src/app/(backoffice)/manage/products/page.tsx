@@ -12,7 +12,7 @@ export default function ProductsPage() {
 
           <Group>
             <Button>
-              <IconPlus />
+              <IconPlus size={20} />
               Crear
             </Button>
           </Group>
@@ -21,11 +21,11 @@ export default function ProductsPage() {
           <Input placeholder="Buscar" type="search" />
 
           <Group>
-            <Button variant="secondary">
-              <IconFilter /> Filtrar
+            <Button variant="outline">
+              <IconFilter size={20} /> Filtrar
             </Button>
-            <Button variant="secondary">
-              <IconArrowsSort /> Ordenar
+            <Button variant="outline">
+              <IconArrowsSort size={20} /> Ordenar
             </Button>
           </Group>
         </Toolbar>
