@@ -12,6 +12,9 @@ export const PageRecipe = sva({
       paddingBlock: 2,
     },
     container: {
+      display: "flex",
+      flexDirection: "column",
+      rowGap: 2,
       borderRadius: "xl",
       maxWidth: "7xl",
       margin: "auto",
@@ -25,11 +28,11 @@ export const PageRecipe = sva({
 });
 
 export const PageHeaderRecipe = css({
-  paddingX: 4,
-  paddingY: 4,
+  paddingX: 6,
+  paddingY: 6,
   background: {
-    base: "linear-gradient(white 30%,transparent 100%)",
-    _osDark: "linear-gradient(black 30%,transparent 100%)",
+    base: "linear-gradient(white 0%,transparent 100%)",
+    _osDark: "linear-gradient(black 0%,transparent 100%)",
   },
   overflow: "hidden",
   borderTopRadius: "xl",
@@ -40,12 +43,15 @@ export const PageHeaderRecipe = css({
 });
 
 export const PageContentRecipe = css({
+  display: "flex",
+  flexDirection: "column",
+  rowGap: 4,
   maxWidth: "7xl",
-  margin: "auto",
-  paddingX: 6,
-  paddingY: 6,
+  marginInline: "auto",
+  width: "full",
+  paddingInline: 6
 });
 
 export const PageFooterRecipe = css({
-  paddingX: 2,
+  paddingX: 6,
 });

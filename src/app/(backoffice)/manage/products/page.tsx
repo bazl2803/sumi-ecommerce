@@ -3,6 +3,7 @@ import {
   Group,
   Hint,
   Input,
+  PageContent,
   PageHeader,
   Stat,
   StatLabel,
@@ -38,19 +39,9 @@ export default function ProductsPage() {
             </Button>
           </Group>
         </Toolbar>
-        <Toolbar>
-          <Input placeholder="Buscar" type="search" />
+      </PageHeader>
 
-          <Group>
-            <Button variant="outline">
-              <IconFilter size={20} /> Filtrar
-            </Button>
-            <Button variant="outline">
-              <IconArrowsSort size={20} /> Ordenar
-            </Button>
-          </Group>
-        </Toolbar>
-
+      <PageContent>
         <div
           className={css({
             display: "grid",
@@ -113,7 +104,20 @@ export default function ProductsPage() {
             </TileContent>
           </Tile>
         </div>
-      </PageHeader>
+
+        <Toolbar>
+          <Input placeholder="Buscar" type="search" />
+
+          <Group>
+            <Button variant="outline">
+              <IconFilter size={20} /> Filtrar
+            </Button>
+            <Button variant="outline">
+              <IconArrowsSort size={20} /> Ordenar
+            </Button>
+          </Group>
+        </Toolbar>
+      </PageContent>
     </>
   );
 }

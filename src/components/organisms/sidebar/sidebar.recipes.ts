@@ -32,7 +32,7 @@ export const SidebarTriggerRecipe = css({
 export const SidebarTrailRecipe = css({
   display: "flex",
   flexDirection: "column",
-  maxHeight: "100dvh",
+  maxHeight: "full",
   rowGap: 8,
 });
 
