@@ -27,6 +27,7 @@ export default function BackOfficeLayout({
 						className={css({
 							display: 'grid',
 							gridTemplateColumns: 'auto 1fr',
+							height: 'screen',
 						})}
 					>
 						<DashboardSidebar />

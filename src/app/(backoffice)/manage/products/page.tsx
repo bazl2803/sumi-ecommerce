@@ -112,10 +112,12 @@ export default function ProductsPage() {
 
 					<Group>
 						<Button variant="outline">
-							<IconFilter size={20} /> Filtrar
+							<ButtonIcon icon={IconFilter} />
+							<ButtonLabel>Filtrar</ButtonLabel>
 						</Button>
 						<Button variant="outline">
-							<IconArrowsSort size={20} /> Ordenar
+							<ButtonIcon icon={IconArrowsSort} />
+							<ButtonLabel>Ordenar</ButtonLabel>
 						</Button>
 					</Group>
 				</Toolbar>

@@ -67,7 +67,7 @@ export const ProductsTable = () => {
 								gridTemplateRows: 'auto auto',
 								justifyItems: 'start',
 								rowGap: 4,
-								columnGap: 12,
+								columnGap: 4,
 							})}
 						>
 							<Stack>
