@@ -1,27 +1,23 @@
-"use client";
-import clsx from "clsx";
-import React from "react";
-import { SidebarRecipe } from "./sidebar.recipes";
-import { SidebarContext } from "./sidebar.context";
-import { SidebarTrail } from "./components/sidebar-trail";
+'use client'
+import clsx from 'clsx'
+import React from 'react'
+import { SidebarRecipe } from './sidebar.recipes'
+import { SidebarContext } from './sidebar.context'
 
-interface SidebarProps extends React.ComponentPropsWithRef<"div"> {}
+interface SidebarProps extends React.ComponentPropsWithRef<'div'> {}
 
-export const Sidebar: React.FC<SidebarProps> = ({
-  className,
-  children,
-  ...props
-}) => {
-  const [selected, setSelected] = React.useState<string>("");
-  const [isOpen, setIsOpen] = React.useState<boolean>(true);
+export const Sidebar: React.FC<SidebarProps> = ({ className, children, ...props }) => {
+	const [selected, setSelected] = React.useState<string>('')
+	const [isOpen, setIsOpen] = React.useState<boolean>(true)
 
-  return (
-    <SidebarContext.Provider
-      value={{ selected, setSelected, isOpen, setIsOpen }}
-    >
-      <div className={clsx(SidebarRecipe, className)} {...props}>
-        <SidebarTrail>{children}</SidebarTrail>
-      </div>
-    </SidebarContext.Provider>
-  );
-};
+	return (
+		<SidebarContext.Provider value={{ selected, setSelected, isOpen, setIsOpen }}>
+			<div
+				className={clsx(SidebarRecipe, className)}
+				{...props}
+			>
+				{children}
+			</div>
+		</SidebarContext.Provider>
+	)
+}

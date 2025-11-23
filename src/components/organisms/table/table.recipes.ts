@@ -18,6 +18,7 @@ export const TableRecipe = css({
         }
     },
     "& td": {
+        verticalAlign: "top",
         textAlign: "left",
         textOverflow: "ellipsis",
         whiteSpace: "nowrap",

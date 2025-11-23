@@ -1,18 +1,14 @@
 import { Hint, Stack, Table, Typography } from '@/components'
 import { css } from 'panda/css'
-import Image from 'next/image'
 import { grid } from 'panda/patterns'
+import Image from 'next/image'
 
 export const ProductsTable = () => {
 	return (
 		<Table>
 			<tbody>
-				<tr>
-					<td
-						className={css({
-							width: 'full',
-						})}
-					>
+				<tr className={css({ userSelect: 'none' })}>
+					<td>
 						<div
 							className={css({
 								display: 'grid',
@@ -32,6 +28,8 @@ export const ProductsTable = () => {
 									borderRadius: 'lg',
 									overflow: 'hidden',
 									padding: 4,
+									border: '1px solid',
+									borderColor: { base: 'neutral.200', _osDark: 'neutral.700' },
 								})}
 							>
 								<Image
@@ -53,7 +51,12 @@ export const ProductsTable = () => {
 									<Hint>GE</Hint>
 								</Stack>
 							</div>
-							<div className={css({ gridColumn: '2/3', gridRow: '2/3' })}>Ver detalles</div>
+							<div className={css({ gridColumn: '2/3', gridRow: '2/3' })}>
+								<Stack>
+									<Hint>Precio</Hint>
+									<Typography role="callout">$13.50 - $18.70</Typography>
+								</Stack>
+							</div>
 						</div>
 					</td>
 					<td>
@@ -68,42 +71,34 @@ export const ProductsTable = () => {
 							})}
 						>
 							<Stack>
-								<Typography
-									role="callout"
-									emphasized
-								>
-									56
-								</Typography>
+								<Typography role="callout">56 unidades</Typography>
 								<Hint>Existencia</Hint>
 							</Stack>
+
 							<Stack>
-								<Typography
-									role="callout"
-									emphasized
-								>
-									$13.50
-								</Typography>
-								<Hint>Precio</Hint>
-							</Stack>
-							<Stack>
-								<Typography
-									role="callout"
-									emphasized
-								>
-									GE6135120
-								</Typography>
+								<Typography role="callout">GE6135120</Typography>
 								<Hint>SKU</Hint>
 							</Stack>
 							<Stack>
-								<Typography
-									role="callout"
-									emphasized
-								>
-									$723.00
-								</Typography>
+								<Typography role="callout">$723.00</Typography>
 								<Hint>Valor total</Hint>
 							</Stack>
 						</div>
+					</td>
+					<td>
+						<Stack>
+							<Typography role="callout">Breakers</Typography>
+							<Hint>Categoría</Hint>
+						</Stack>
+					</td>
+					<td>
+						<Stack>
+							<Typography role="callout">12</Typography>
+							<Hint>Vendidos esta semana</Hint>
+
+							<Typography role="callout">2536</Typography>
+							<Hint>Vendidos Totales</Hint>
+						</Stack>
 					</td>
 				</tr>
 			</tbody>

@@ -1,10 +1,14 @@
 import { css, sva } from "panda/css";
 
 export const SidebarRecipe = css({
+  display: "flex",
+  flexDirection: "column",
   paddingY: 6,
   height: "full",
   width: 240,
   position: "relative",
+  rowGap: 8,
+  maxHeight: "screen"
 });
 
 export const SidebarHeaderRecipe = sva({
@@ -22,18 +26,12 @@ export const SidebarHeaderRecipe = sva({
   },
 });
 
+
 export const SidebarTriggerRecipe = css({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
   borderRadius: "full",
-});
-
-export const SidebarTrailRecipe = css({
-  display: "flex",
-  flexDirection: "column",
-  maxHeight: "full",
-  rowGap: 8,
 });
 
 export const SidebarSectionRecipe = sva({

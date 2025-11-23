@@ -74,33 +74,31 @@ export default function ProductsPage() {
 						<TileContent>
 							<Stat>
 								<StatValue>$24,934</StatValue>
-								<Hint>Valor total del stock</Hint>
+								<Hint>Valor total</Hint>
 							</Stat>
 						</TileContent>
 					</Tile>
-
 					<Tile surface="outline">
 						<TileHeader>
-							<StatLabel>Productos</StatLabel>
+							<StatLabel>Productos Vendidos</StatLabel>
 							<IconPackage />
 						</TileHeader>
 						<TileContent>
 							<Stat>
-								<StatValue>2,934</StatValue>
-								<Hint>Totales Activos</Hint>
+								<StatValue>65M</StatValue>
+								<Hint>Artículos vendidos</Hint>
 							</Stat>
 						</TileContent>
 					</Tile>
-
 					<Tile surface="outline">
 						<TileHeader>
-							<StatLabel>Productos</StatLabel>
+							<StatLabel>Valor Total</StatLabel>
 							<IconPackage />
 						</TileHeader>
 						<TileContent>
 							<Stat>
-								<StatValue>2,934</StatValue>
-								<Hint>Totales Activos</Hint>
+								<StatValue>$24,934</StatValue>
+								<Hint>Valor total</Hint>
 							</Stat>
 						</TileContent>
 					</Tile>
