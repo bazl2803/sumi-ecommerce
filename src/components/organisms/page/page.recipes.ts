@@ -4,18 +4,13 @@ export const PageRecipe = sva({
   slots: ["root", "container"],
   base: {
     root: {
-      display: "flex",
-      flexDirection: "column",
       height: "full",
-      fontFamily: "var(--font-geist-sans)",
-      paddingInline: 2,
-      paddingBlock: 2,
     },
     container: {
       display: "flex",
       flexDirection: "column",
       rowGap: 2,
-      borderRadius: "xl",
+      borderRadius: { lg: "xl" },
       maxWidth: "7xl",
       margin: "auto",
       height: "full",
@@ -28,13 +23,12 @@ export const PageRecipe = sva({
 });
 
 export const PageHeaderRecipe = css({
-  paddingX: 6,
-  paddingY: 6,
+  padding: 6,
   background: {
     base: "linear-gradient(white 0%,transparent 100%)",
     _osDark: "linear-gradient(black 0%,transparent 100%)",
   },
-  overflow: "hidden",
+  overflow: "visible",
   borderTopRadius: "xl",
   position: "sticky",
   top: 0,

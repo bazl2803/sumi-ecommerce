@@ -11,9 +11,13 @@
     "format": "biome format --write"
   },
   "dependencies": {
+    "@prisma/adapter-pg": "^7.0.1",
+    "@prisma/client": "^7.0.1",
     "@tabler/icons-react": "^3.35.0",
     "clsx": "^2.1.1",
+    "dotenv": "^17.2.3",
     "next": "16.0.1",
+    "pg": "^8.16.3",
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "sass": "^1.94.0"
@@ -21,9 +25,11 @@
   "devDependencies": {
     "@biomejs/biome": "2.2.0",
     "@pandacss/dev": "^1.5.0",
-    "@types/node": "^20",
+    "@types/node": "^24.10.1",
+    "@types/pg": "^8.15.6",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "prisma": "^7.0.1",
     "typescript": "^5"
   }
 }

@@ -1,27 +1,29 @@
+'use client'
 import {
 	Button,
 	ButtonIcon,
 	ButtonLabel,
+	Dropdown,
+	DropdownContent,
+	DropdownTrigger,
 	Group,
-	Hint,
 	Input,
 	PageContent,
 	PageHeader,
-	Stat,
-	StatLabel,
-	StatValue,
-	Tile,
-	TileContent,
-	TileHeader,
+	Segment,
 	Toolbar,
 	Typography,
 } from '@/components'
-import { IconArrowsSort, IconFilter, IconPackage, IconPlus } from '@tabler/icons-react'
+import { IconArrowsSort, IconCloudDownload, IconFilter, IconPlus } from '@tabler/icons-react'
 import { css } from 'panda/css'
 import { flex } from 'panda/patterns'
 import { ProductsTable } from './_components/products-table'
+import { useState } from 'react'
+import { ProductsPageTiles } from './_components/products-page-tiles'
 
 export default function ProductsPage() {
+	const [status, setStatus] = useState('all')
+
 	return (
 		<>
 			<PageHeader className={flex({ direction: 'column', gap: 4 })}>
@@ -34,6 +36,15 @@ export default function ProductsPage() {
 					</Typography>
 
 					<Group>
+						<Dropdown>
+							<DropdownTrigger>
+								<Button variant="outline">
+									<ButtonIcon icon={IconCloudDownload} />
+									<ButtonLabel>Exportar CSV</ButtonLabel>
+								</Button>
+							</DropdownTrigger>
+							<DropdownContent>Something</DropdownContent>
+						</Dropdown>
 						<Button>
 							<ButtonIcon icon={IconPlus} />
 							<ButtonLabel>Crear</ButtonLabel>
@@ -43,69 +54,23 @@ export default function ProductsPage() {
 			</PageHeader>
 
 			<PageContent>
-				<div
-					className={css({
-						display: 'grid',
-						gridTemplateColumns: {
-							base: 'repeat(auto-fit, minmax(min(300px, 100%), 1fr))',
-							lg: 'repeat(4, 1fr)',
-						},
-						gap: 4,
-					})}
-				>
-					<Tile surface="outline">
-						<TileHeader>
-							<StatLabel>Productos</StatLabel>
-							<IconPackage />
-						</TileHeader>
-						<TileContent>
-							<Stat>
-								<StatValue>2,934</StatValue>
-								<Hint>Totales Activos</Hint>
-							</Stat>
-						</TileContent>
-					</Tile>
+				<ProductsPageTiles />
 
-					<Tile surface="outline">
-						<TileHeader>
-							<StatLabel>Inventario</StatLabel>
-							<IconPackage />
-						</TileHeader>
-						<TileContent>
-							<Stat>
-								<StatValue>$24,934</StatValue>
-								<Hint>Valor total</Hint>
-							</Stat>
-						</TileContent>
-					</Tile>
-					<Tile surface="outline">
-						<TileHeader>
-							<StatLabel>Productos Vendidos</StatLabel>
-							<IconPackage />
-						</TileHeader>
-						<TileContent>
-							<Stat>
-								<StatValue>65M</StatValue>
-								<Hint>Artículos vendidos</Hint>
-							</Stat>
-						</TileContent>
-					</Tile>
-					<Tile surface="outline">
-						<TileHeader>
-							<StatLabel>Valor Total</StatLabel>
-							<IconPackage />
-						</TileHeader>
-						<TileContent>
-							<Stat>
-								<StatValue>$24,934</StatValue>
-								<Hint>Valor total</Hint>
-							</Stat>
-						</TileContent>
-					</Tile>
-				</div>
+				<Segment
+					options={[
+						{ label: 'Todos', value: 'all' },
+						{ label: 'Activos', value: 'active' },
+						{ label: 'Inactivos', value: 'inactive' },
+					]}
+					value={status}
+					onChange={setStatus}
+				/>
 
 				<Toolbar>
 					<Input
+						className={css({
+							width: 'min(360px, 100%)',
+						})}
 						placeholder="Buscar"
 						type="search"
 					/>

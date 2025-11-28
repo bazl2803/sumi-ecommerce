@@ -1,7 +1,8 @@
-import { Hint, Stack, Table, Typography } from '@/components'
+import { Group, Hint, Stack, Table, Typography } from '@/components'
 import { css } from 'panda/css'
 import { grid } from 'panda/patterns'
 import Image from 'next/image'
+import { IconCircleCheck, IconCoin, IconPackages, IconSquaresSelected } from '@tabler/icons-react'
 
 export const ProductsTable = () => {
 	return (
@@ -70,18 +71,33 @@ export const ProductsTable = () => {
 								columnGap: 4,
 							})}
 						>
+							<Stack className={css({ color: 'green.500' })}>
+								<Group>
+									<Typography role="callout">Activo</Typography>
+									<IconCircleCheck />
+								</Group>
+								<Hint>Estado</Hint>
+							</Stack>
 							<Stack>
-								<Typography role="callout">56 unidades</Typography>
+								<Group>
+									<Typography role="callout">56</Typography>
+									<IconPackages />
+								</Group>
 								<Hint>Existencia</Hint>
 							</Stack>
-
 							<Stack>
-								<Typography role="callout">GE6135120</Typography>
-								<Hint>SKU</Hint>
+								<Group>
+									<Typography role="callout">723.00</Typography>
+									<IconCoin />
+								</Group>
+								<Hint>Valor total</Hint>
 							</Stack>
 							<Stack>
-								<Typography role="callout">$723.00</Typography>
-								<Hint>Valor total</Hint>
+								<Group>
+									<Typography role="callout">5</Typography>
+									<IconSquaresSelected />
+								</Group>
+								<Hint>Variantes</Hint>
 							</Stack>
 						</div>
 					</td>

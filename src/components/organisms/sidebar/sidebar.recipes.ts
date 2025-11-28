@@ -1,14 +1,26 @@
 import { css, sva } from "panda/css";
 
 export const SidebarRecipe = css({
+  display: "grid",
+  gridTemplateColumns: { base: "1fr", lg: "240px 1fr" },
+  columnGap: 4,
+  height: "100dvh",
+  width: "100dvw"
+});
+
+export const SidebarContentRecipe = css({
   display: "flex",
   flexDirection: "column",
-  paddingY: 6,
-  height: "full",
-  width: 240,
-  position: "relative",
+  rowGap: 6,
+  flexGrow: 1,
+});
+
+export const SidebarTrailRecipe = css({
+  display: "flex",
+  flexDirection: "column",
+  paddingBlock: 6,
   rowGap: 8,
-  maxHeight: "screen"
+  justifyContent: "space-between"
 });
 
 export const SidebarHeaderRecipe = sva({
@@ -26,6 +38,11 @@ export const SidebarHeaderRecipe = sva({
   },
 });
 
+export const SidebarFooterRecipe = css({
+  position: "sticky",
+  bottom: 0,
+  paddingInline: 6,
+})
 
 export const SidebarTriggerRecipe = css({
   display: "flex",
@@ -91,7 +108,7 @@ export const SidebarItemRecipe = sva({
           borderLeft: 4,
           borderLeftStyle: "solid",
           borderLeftColor: "secondary",
-          //** Border Size - Previous Padding */
+          //** Magic Number: Indicator Size - 4 (Actual Padding) */
           paddingLeft: 3,
         },
         wrapper: {
@@ -108,15 +125,5 @@ export const SidebarItemRecipe = sva({
         },
       },
     },
-    collapsed: {
-      true: {
-        label: {
-          display: "none",
-        },
-      },
-    },
-  },
-  defaultVariants: {
-    collapsed: false,
   },
 });

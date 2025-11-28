@@ -5,6 +5,7 @@ export const ToolbarRecipe = css({
   flexWrap: "nowrap",
   justifyContent: "space-between",
   alignItems: "center",
-  gap: 1,
+  overflow: "visible",
   width: "full",
+  gap: 1,
 });
