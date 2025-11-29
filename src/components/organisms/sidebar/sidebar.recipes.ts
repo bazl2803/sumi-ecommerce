@@ -5,7 +5,8 @@ export const SidebarRecipe = css({
   gridTemplateColumns: { base: "1fr", lg: "240px 1fr" },
   columnGap: 4,
   height: "100dvh",
-  width: "100dvw"
+  width: "100dvw",
+  padding: 2
 });
 
 export const SidebarContentRecipe = css({
@@ -18,9 +19,11 @@ export const SidebarContentRecipe = css({
 export const SidebarTrailRecipe = css({
   display: "flex",
   flexDirection: "column",
-  paddingBlock: 6,
+  padding: 2,
   rowGap: 8,
-  justifyContent: "space-between"
+  justifyContent: "space-between",
+  height: "full",
+  borderRadius: "xl",
 });
 
 export const SidebarHeaderRecipe = sva({
@@ -29,7 +32,7 @@ export const SidebarHeaderRecipe = sva({
     root: {
       display: "flex",
       justifyContent: "space-between",
-      paddingInline: 6,
+      padding: 2,
     },
     logo: {
       height: "32px",
@@ -41,7 +44,6 @@ export const SidebarHeaderRecipe = sva({
 export const SidebarFooterRecipe = css({
   position: "sticky",
   bottom: 0,
-  paddingInline: 6,
 })
 
 export const SidebarTriggerRecipe = css({
@@ -62,7 +64,7 @@ export const SidebarSectionRecipe = sva({
     title: {
       fontWeight: "500",
       fontSize: "xs",
-      paddingX: 6,
+      paddingX: 2,
       color: "neutral.400",
     },
     list: {
@@ -87,7 +89,6 @@ export const SidebarItemRecipe = sva({
   base: {
     root: {
       cursor: "pointer",
-      paddingInline: 4,
     },
     label: {
       fontWeight: "500",
@@ -104,13 +105,6 @@ export const SidebarItemRecipe = sva({
   variants: {
     selected: {
       true: {
-        root: {
-          borderLeft: 4,
-          borderLeftStyle: "solid",
-          borderLeftColor: "secondary",
-          //** Magic Number: Indicator Size - 4 (Actual Padding) */
-          paddingLeft: 3,
-        },
         wrapper: {
           outline: "1px solid",
           outlineColor: { base: "neutral.200", _osDark: "neutral.800" },

@@ -11,13 +11,10 @@ export const PageRecipe = sva({
       flexDirection: "column",
       rowGap: 2,
       borderRadius: { lg: "xl" },
-      maxWidth: "7xl",
-      margin: "auto",
+      marginInline: "auto",
       height: "full",
       width: "full",
       backgroundColor: { base: "white", _osDark: "black" },
-      outline: "1px solid",
-      outlineColor: { base: "neutral.200", _osDark: "neutral.900" },
     },
   },
 });
@@ -40,10 +37,10 @@ export const PageContentRecipe = css({
   display: "flex",
   flexDirection: "column",
   rowGap: 4,
-  maxWidth: "7xl",
   marginInline: "auto",
   width: "full",
-  paddingInline: 6
+  paddingInline: 6,
+  flexGrow: 1
 });
 
 export const PageFooterRecipe = css({

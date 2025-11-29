@@ -1,3 +1,4 @@
+import { truncate } from "fs";
 import { cva } from "panda/css";
 
 export const TypographyRecipe = cva({
@@ -66,6 +67,13 @@ export const TypographyRecipe = cva({
     emphasized: {
       true: {},
     },
+    truncate: {
+      true: {
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        whiteSpace: "nowrap",
+      },
+    }
   },
   compoundVariants: [
     {

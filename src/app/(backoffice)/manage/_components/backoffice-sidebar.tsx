@@ -9,6 +9,7 @@ import {
 	Avatar,
 	TypographyRecipe,
 	Hint,
+	Button,
 } from '@/components'
 import {
 	IconHome,
@@ -23,7 +24,7 @@ import clsx from 'clsx'
 import { css } from 'panda/css'
 import { grid } from 'panda/patterns'
 
-export const DashboardSidebar = () => {
+export const BackofficeSidebar = () => {
 	const CollectionItems = [
 		{
 			href: '/manage/products',
@@ -110,32 +111,7 @@ export const DashboardSidebar = () => {
 					</SidebarSection>
 				</SidebarContent>
 				<SidebarFooter>
-					<div
-						className={grid({
-							gridTemplateColumns: 'auto 1fr',
-							gridTemplateRows: 'auto auto',
-							alignItems: 'center',
-							columnGap: 2,
-						})}
-					>
-						<Avatar
-							className={css({
-								gridRow: '1/3',
-							})}
-							src="/me.jpg"
-						/>
-						<div
-							className={clsx(
-								TypographyRecipe({ role: 'subheadline', emphasized: true }),
-								css({ gridRow: '1', gridColumn: '2' })
-							)}
-						>
-							Bryan Lemus
-						</div>
-						<Hint className={clsx(css({ gridRow: '2', gridColumn: '2' }))}>
-							bryanalelemus@gmail.com
-						</Hint>
-					</div>
+					<Button variant="solid">test</Button>
 				</SidebarFooter>
 			</SidebarTrail>
 		</>

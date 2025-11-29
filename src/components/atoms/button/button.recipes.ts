@@ -1,4 +1,4 @@
-import { cva } from "panda/css";
+import { css, cva } from "panda/css";
 
 export const ButtonRecipe = cva({
   base: {
@@ -8,72 +8,92 @@ export const ButtonRecipe = cva({
     borderRadius: "lg",
     fontWeight: 500,
     gap: 2,
+    "&:has(span)": {
+      paddingInline: 4,
+    },
   },
   variants: {
     variant: {
-      primary: {
+      solid: {
         backgroundColor: { base: "black", _osDark: "white" },
         color: { base: "white", _osDark: "black" },
-        outline: "1px solid",
-        outlineColor: { base: "neutral.200", _osDark: "neutral.700" },
+        _hover: {
+          backgroundColor: { base: "neutral.200", _osDark: "neutral.700" },
+        },
       },
-      secondary: {
-        backgroundColor: { base: "neutral.100", _osDark: "neutral.900" },
-        color: { base: "black", _osDark: "white" },
+      outline: {
+        outlineWidth: 1,
+        outlineStyle: "solid",
+        outlineColor: { base: "neutral.200", _osDark: "neutral.700" },
+        _hover: {
+          backgroundColor: { base: "neutral.100", _osDark: "neutral.800" },
+        },
       },
       ghost: {
-        backgroundColor: "transparent",
-        color: { base: "black", _osDark: "white" },
         _hover: {
-          backgroundColor: { base: "neutral.100", _osDark: "neutral.900" },
-          outline: "1px solid",
-          outlineColor: { base: "neutral.200", _osDark: "neutral.700" },
+          backgroundColor: { base: "neutral.100", _osDark: "neutral.800" },
         },
       },
       link: {
-        backgroundColor: "transparent",
+        textDecoration: "none",
         color: { base: "black", _osDark: "white" },
+        _hover: {
+          textDecoration: "underline",
+        },
       },
-      outline: {
-        backgroundColor: "transparent",
-        color: { base: "black", _osDark: "white" },
-        outline: "1px solid",
+      subtle: {
+        outlineWidth: 1,
+        outlineStyle: "solid",
         outlineColor: { base: "neutral.200", _osDark: "neutral.700" },
+        backgroundColor: { base: "neutral.100", _osDark: "neutral.800" },
+        _hover: {
+          backgroundColor: { base: "neutral.200", _osDark: "neutral.700" },
+        },
       },
+      soft: {
+        backgroundColor: { base: "neutral.100", _osDark: "neutral.800" },
+        _hover: {
+          backgroundColor: { base: "neutral.200", _osDark: "neutral.700" },
+        },
+      },
+    },
+    rounded: {
+      none: { borderRadius: 0 },
+      sm: { borderRadius: "sm" },
+      md: { borderRadius: "md" },
+      lg: { borderRadius: "lg" },
+      full: { borderRadius: "full" },
     },
     size: {
       sm: {
-        paddingX: 2,
-        paddingY: 1,
+        padding: 1,
         fontSize: "sm",
-        height: "36px"
+        height: "36px",
       },
       md: {
-        paddingX: 3,
-        paddingY: 2,
+        padding: 2,
         fontSize: "md",
-        height: "40px"
+        height: "40px",
       },
       lg: {
-        paddingX: 4,
-        paddingY: 3,
+        padding: 3,
         fontSize: "lg",
-        height: "56px"
+        height: "56px",
       },
     },
   },
   defaultVariants: {
-    variant: "primary",
+    variant: "solid",
     size: "md",
+    rounded: "full",
   },
 });
-
-export const ButtonLabelRecipe = cva({
-  base: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    fontWeight: 500,
-    gap: 2,
-  },
+9;
+export const ButtonLabelRecipe = css({
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  fontWeight: 500,
+  paddingInline: 1,
+  gap: 2,
 });

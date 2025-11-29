@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import { AppProvider } from '@/features/core/providers/app-provider'
-import { DashboardSidebar } from './_components/dashboard-sidebar'
 import { css } from 'panda/css'
-import { Page, Sidebar, SidebarContent, SidebarPage } from '@/components'
+import { Page, Sidebar, SidebarPage } from '@/components'
+import { BackofficeSidebar } from './_components/backoffice-sidebar'
 
 export const metadata: Metadata = {
 	title: 'Administración - Suministros Elécricos',
@@ -18,12 +18,12 @@ export default function BackOfficeLayout({
 		<html>
 			<body
 				className={css({
-					backgroundColor: { base: 'neutral.50', _osDark: 'neutral.950' },
+					backgroundColor: { base: 'white', _osDark: 'black' },
 				})}
 			>
 				<AppProvider>
 					<Sidebar>
-						<DashboardSidebar />
+						<BackofficeSidebar />
 						<SidebarPage>
 							<Page>{children}</Page>
 						</SidebarPage>
