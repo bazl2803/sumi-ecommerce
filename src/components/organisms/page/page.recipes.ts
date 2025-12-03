@@ -3,9 +3,6 @@ import { css, sva } from "panda/css";
 export const PageRecipe = sva({
   slots: ["root", "container"],
   base: {
-    root: {
-      height: "full",
-    },
     container: {
       display: "flex",
       flexDirection: "column",

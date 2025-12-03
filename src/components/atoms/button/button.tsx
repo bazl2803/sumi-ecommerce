@@ -1,16 +1,24 @@
 import React from 'react'
-import { ButtonRecipe } from './button.recipes'
+import { ButtonRecipe } from '@/components'
+import clsx from 'clsx'
 
 interface ButtonProps extends React.ComponentPropsWithRef<'button'> {
 	variant?: 'solid' | 'outline' | 'ghost' | 'link' | 'subtle' | 'soft'
-	size?: 'sm' | 'md' | 'lg'
+	rounded?: 'full' | 'sm' | 'md' | 'lg'
+	size?: 'auto' | 'sm' | 'md' | 'lg'
 }
 
-export const Button: React.FC<ButtonProps> = ({ variant, size, ...props }) => {
-	return (
+export const Button: React.FC<ButtonProps> =
+	({
+		className,
+		variant,
+		size,
+		rounded,
+		...props
+	}) =>
 		<button
-			className={ButtonRecipe({ variant, size })}
+			className={clsx(ButtonRecipe({ variant, size, rounded }), className)}
 			{...props}
 		/>
-	)
-}
+
+

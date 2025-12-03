@@ -1,6 +1,7 @@
 import React from "react";
 import { Inter } from "next/font/google";
 import "@/app/globals.css";
+import clsx from "clsx";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -10,5 +11,9 @@ const inter = Inter({
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  return <div className={inter.className}>{children}</div>;
+  return (
+    <div className={clsx(inter.className)}>
+      {children}
+    </div>
+  );
 };

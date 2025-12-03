@@ -1,30 +1,28 @@
-import { Button, ButtonIcon, Group, Input, Toolbar } from '@/components'
-import { IconShoppingCart } from '@tabler/icons-react'
+import { Avatar, Button, ButtonLabel, Dropdown, DropdownContent, DropdownTrigger, Toolbar } from '@/components'
 import Image from 'next/image'
+import { css } from 'panda/css'
+import { ProfileButton } from "@/app/(frontend)/_components/profile-button";
 
-export const EcommerceToolbar = () => {
-	return (
-		<Toolbar>
-			<div>
-				<Image
-					src={'/logo-white.svg'}
-					alt="logo"
-					width={100}
-					height={100}
-				/>
-			</div>
+export const EcommerceToolbar = async () => {
 
-			<div>
-				<Input placeholder="Buscar" />
-			</div>
 
-			<Group>
-				<Button variant="solid">
-					<ButtonIcon icon={IconShoppingCart} />
-				</Button>
-				<Button variant="solid">Iniciar Sesión</Button>
-				<Button variant="solid">Registrarse</Button>
-			</Group>
-		</Toolbar>
-	)
+    return (
+        <Toolbar>
+            <div>
+                <Image
+                    className={css({
+                        width: 'auto',
+                        height: '40px',
+                        objectFit: 'contain',
+                    })}
+                    src={'/logo-white.svg'}
+                    alt="logo"
+                    width={100}
+                    height={100}
+                />
+            </div>
+
+            <ProfileButton />
+        </Toolbar>
+    )
 }
