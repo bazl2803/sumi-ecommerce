@@ -24,6 +24,8 @@ export * from './atoms/typography/typography.recipes';
 export * from './atoms/typography/typography';
 export * from './molecules/card/card.recipes';
 export * from './molecules/card/card';
+export * from './molecules/sheet/sheet.recipes';
+export * from './molecules/sheet/sheet';
 export * from './molecules/stat/components/stat-label';
 export * from './molecules/stat/components/stat-value';
 export * from './molecules/stat/stat.recipes';

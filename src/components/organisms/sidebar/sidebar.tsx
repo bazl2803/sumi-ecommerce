@@ -1,8 +1,7 @@
 'use client'
 import clsx from 'clsx'
 import React from 'react'
-import { SidebarRecipe } from './sidebar.recipes'
-import { SidebarContext } from './sidebar.context'
+import { SidebarRecipe, SidebarContext } from '@/components'
 
 interface SidebarProps extends React.ComponentPropsWithRef<'div'> {}
 

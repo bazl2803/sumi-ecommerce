@@ -1,4 +1,5 @@
 import { TablerIcon } from '@tabler/icons-react'
+import { ButtonIconRecipe } from '../button.recipes'
 
 interface ButtonIconProps {
 	icon: TablerIcon
@@ -6,5 +7,9 @@ interface ButtonIconProps {
 }
 
 export const ButtonIcon = ({ icon: Icon, size = 20 }: ButtonIconProps) => {
-	return <Icon size={size} />
+	return (
+		<div className={ButtonIconRecipe}>
+			<Icon size={size} />
+		</div>
+	)
 }

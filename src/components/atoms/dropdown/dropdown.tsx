@@ -1,6 +1,6 @@
 'use client'
 import React, { createContext, useContext, useState, useRef, useEffect } from 'react'
-import { DropdownContentRecipe } from './dropdown.recipes'
+import { DropdownContentRecipe } from '@/components'
 
 interface DropdownContextType {
 	isOpen: boolean

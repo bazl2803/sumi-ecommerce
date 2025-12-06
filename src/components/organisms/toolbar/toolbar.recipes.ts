@@ -7,5 +7,5 @@ export const ToolbarRecipe = css({
   alignItems: "center",
   overflow: "visible",
   width: "full",
-  gap: 1,
+  gap: 4,
 });
