@@ -1,9 +1,23 @@
-import { Avatar, Button, ButtonLabel, Group, Hint, Stack, Typography } from '@/components'
+import { Avatar, Button, ButtonLabel, Typography } from '@/components'
 import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
-import { css } from 'panda/css'
+import { sva } from 'panda/css'
 
-export const ProfileButton = async () => {
+const ProfileButtonRecipe = sva({
+	slots: ['avatar', 'label'],
+	base: {
+		avatar: {
+			width: '2rem',
+			height: '2rem',
+		},
+		label: {
+			display: { base: 'none' },
+		},
+	},
+})
+
+export const ProfileButton = async ({ className }: { className?: string }) => {
+	const styles = ProfileButtonRecipe({ className })
 	const supabase = await createClient()
 	const {
 		data: { user },
@@ -13,7 +27,7 @@ export const ProfileButton = async () => {
 	if (error || !user) {
 		return (
 			<Link href={'/auth'}>
-				<Button>Iniciar Sesion</Button>
+				<Button>Iniciar Sesión</Button>
 			</Link>
 		)
 	}
@@ -22,13 +36,14 @@ export const ProfileButton = async () => {
 	const avatarUrl = user.user_metadata.avatar_url
 
 	return (
-		<Button variant={'subtle'}>
+		<Button variant={'ghost'}>
 			<Avatar
+				className={styles.avatar}
 				src={avatarUrl}
 				fallback={usernameByMetadata[0]}
 			/>
 
-			<ButtonLabel>
+			<ButtonLabel className={styles.label}>
 				<Typography
 					role="callout"
 					emphasized

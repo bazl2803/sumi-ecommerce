@@ -5,11 +5,11 @@ export const NavbarRecipe = css({
     gridTemplateColumns: 'repeat(auto-fit, minmax(60px, 1fr))',
     gridGap: 1,
     padding: 2,
-    margin: 1,
+    margin: 2,
     borderRadius: 'full',
     outline: '1px solid',
-    outlineColor: { base: 'neutral.200/10', _osDark: 'neutral.800/10' },
-    backgroundColor: { base: 'neutral.50/10', _osDark: 'neutral.950/10' },
+    outlineColor: { base: 'neutral.200/70', _osDark: 'neutral.800/70' },
+    backgroundColor: { base: 'neutral.50/70', _osDark: 'neutral.950/70' },
     backdropFilter: 'auto',
     backdropBlur: 'sm'
 })
@@ -25,9 +25,7 @@ export const NavbarItemRecipe = sva({
             rowGap: 1,
             padding: 1,
             borderRadius: '4xl',
-            _hover: {
-                bg: { base: 'neutral.100/30', _osDark: 'neutral.900/30' },
-            }
+            color: { base: 'neutral.600', _osDark: 'neutral.400' },
         },
         label: {
             fontSize: 'xs',
@@ -37,6 +35,16 @@ export const NavbarItemRecipe = sva({
             whiteSpace: 'nowrap',
             overflow: 'hidden',
             maxWidth: '100%',
+        }
+    },
+    variants: {
+        selected: {
+            true: {
+                root: {
+                    bg: { base: 'neutral.100', _osDark: 'neutral.900' },
+                    color: { base: 'black', _osDark: 'white' },
+                }
+            },
         }
     }
 })

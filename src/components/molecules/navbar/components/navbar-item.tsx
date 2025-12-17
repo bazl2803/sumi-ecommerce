@@ -2,7 +2,7 @@
 
 import clsx from 'clsx'
 import React from 'react'
-import { NavbarItemRecipe } from '../navbar.recipes'
+import { NavbarItemRecipe } from '@/components'
 import Link from 'next/link'
 import { TablerIcon } from '@tabler/icons-react'
 
@@ -10,6 +10,7 @@ import { TablerIcon } from '@tabler/icons-react'
 interface NavbarItemPropsBase extends React.ComponentPropsWithRef<'a'> {
     asChild?: boolean,
     className?: string
+    selected?: boolean
 }
 
 // If asChild is false, render a link with the passed href
@@ -23,14 +24,14 @@ interface NavbarItemLinkProps extends NavbarItemPropsBase {
 // If asChild is true, render the children directly with the passed props
 interface NavbarItemAsChildProps extends NavbarItemPropsBase {
     asChild: true,
-    children: React.ReactElement
+    children: React.ReactElement,
 }
 
 // Union type for both props
 export type NavbarItemProps = NavbarItemLinkProps | NavbarItemAsChildProps
 
-export const NavbarItem: React.FC<NavbarItemProps> = (props) => {
-    const styles = NavbarItemRecipe();
+export const NavbarItem: React.FC<NavbarItemProps> = ({ selected, ...props }) => {
+    const styles = NavbarItemRecipe({ selected });
 
     // If asChild is true, render the children directly with the passed props
     if (props.asChild) {
@@ -51,7 +52,7 @@ export const NavbarItem: React.FC<NavbarItemProps> = (props) => {
             className={clsx(styles.root, props.className)}
             href={href || '#'}
         >
-            {Icon && <Icon />}
+            {Icon && <Icon/>}
             <span className={styles.label}>{label}</span>
         </Link>
     )

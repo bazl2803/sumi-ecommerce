@@ -1,3 +1,9 @@
+import { Typography } from "@/components";
+
 export default function Home() {
-	return <>Page</>
+    return (
+        <>
+            <Typography role={"title1"} emphasized>Hola, Bryan</Typography>
+        </>
+    )
 }

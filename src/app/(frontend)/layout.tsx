@@ -1,11 +1,9 @@
 import type { Metadata } from 'next'
 import { AppProvider } from '@/features/core/providers/app-provider'
 import { Container } from '@/components/atoms/container/container'
-import { Navbar } from '@/components'
-import { NavbarItem } from '@/components/molecules/navbar/components/navbar-item'
-import { IconHome } from '@tabler/icons-react'
-import { MobileEcommerceNavbar } from './_components/mobile-ecommerce-navbar'
+import { MobileNavbar } from './_components/mobile-navbar'
 import { css } from 'panda/css'
+import { MobileToolbar } from './_components/mobile-toolbar'
 
 export const metadata: Metadata = {
 	title: 'Suministros Eléctricos',
@@ -19,15 +17,16 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={css({
-				height: '100dvh',
-				width: '100dvw',
-			})}>
+			<body
+				className={css({
+					height: '100dvh',
+					width: '100dvw',
+				})}
+			>
 				<AppProvider>
-					<Container>
-						{children}
-					</Container>
-					<MobileEcommerceNavbar />
+					<MobileToolbar />
+					<Container>{children}</Container>
+					<MobileNavbar />
 				</AppProvider>
 			</body>
 		</html>

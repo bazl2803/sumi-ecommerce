@@ -7,7 +7,7 @@ export const ButtonRecipe = cva({
 		alignItems: 'center',
 		borderRadius: 'lg',
 		fontWeight: 500,
-        gap: 1
+		gap: 1
 	},
 	variants: {
 		variant: {
@@ -69,7 +69,7 @@ export const ButtonRecipe = cva({
 				minWidth: '36px',
 			},
 			md: {
-				padding: 1,
+				padding: 2,
 				fontSize: 'md',
 				height: 10,
 				minWidth: '40px',
@@ -95,7 +95,7 @@ export const ButtonLabelRecipe = css({
 	alignItems: 'center',
 	fontWeight: 500,
 	gap: 2,
-    padding: 1
+	padding: 1
 })
 
 export const ButtonIconRecipe = css({
