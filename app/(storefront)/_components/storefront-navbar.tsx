@@ -1,4 +1,5 @@
 import { Navbar, NavbarItem, NavbarItemIcon, NavbarItemLabel, NavbarList } from '@/components'
+import { usePathname } from 'next/navigation'
 import { LuHouse, LuList, LuSearch, LuShoppingCart, LuUser } from 'react-icons/lu'
 
 const items = [
@@ -30,6 +31,8 @@ const items = [
 ]
 
 export function StorefrontNavbar() {
+	const selectedItem = items.find((item) => item.href === usePathname())
+
 	return (
 		<Navbar variant='floating'>
 			<NavbarList>
@@ -37,6 +40,7 @@ export function StorefrontNavbar() {
 					<NavbarItem
 						href={item.href}
 						key={item.label}
+						selected={selectedItem?.href === item.href}
 					>
 						<NavbarItemIcon icon={item.icon} />
 						<NavbarItemLabel>{item.label}</NavbarItemLabel>

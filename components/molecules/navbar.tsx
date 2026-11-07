@@ -16,6 +16,7 @@ const navbarListStyles = cva({
 		display: 'flex',
 		flexWrap: 'nowrap',
 		alignItems: 'center',
+		width: 'full',
 	},
 	variants: {
 		direction: {
@@ -43,11 +44,13 @@ const navbarItemStyles = cva({
 		flexGrow: 1,
 		padding: 1,
 		gap: 1,
+		borderRadius: '4xl',
 	},
 	variants: {
 		selected: {
 			true: {
-				backgroundColor: 'primary.100',
+				backgroundColor: 'yellow.400',
+				color: 'black',
 			},
 		},
 	},
@@ -87,12 +90,10 @@ const navbarStyles = cva({
 			},
 			// Detached from the flow: sits above the content with a gap, radius and elevation.
 			floating: {
-				position: 'fixed',
-				insetInline: '3',
-				insetBlockEnd: '3',
 				width: 'auto',
-				paddingX: '3',
-				paddingY: '2',
+				paddingX: 2,
+				paddingY: 2,
+				marginX: 2,
 				borderRadius: 'full',
 				backgroundColor: 'neutral.50/75',
 				backdropFilter: 'auto',
@@ -113,15 +114,13 @@ const navbarStyles = cva({
 /* ----------------------------------------------------------------------------- */
 
 interface NavbarProps
-	extends React.ComponentPropsWithRef<'nav'>,
-		RecipeVariantProps<typeof navbarStyles> {}
+	extends React.ComponentPropsWithRef<'nav'>, RecipeVariantProps<typeof navbarStyles> {}
 
 interface NavbarListProps
 	extends React.ComponentPropsWithRef<'ul'>, RecipeVariantProps<typeof navbarListStyles> {}
 
 interface NavbarItemProps
-	extends React.ComponentPropsWithRef<'a'>, RecipeVariantProps<typeof navbarItemStyles> {
-}
+	extends React.ComponentPropsWithRef<'a'>, RecipeVariantProps<typeof navbarItemStyles> {}
 
 interface NavbarItemLabelProps {
 	children: React.ReactNode
@@ -195,7 +194,7 @@ function NavbarList({ className, children, direction, fullWidth, ...rest }: Navb
 /* Navbar Item                                                                   */
 /* ----------------------------------------------------------------------------- */
 
-function NavbarItem({ href, selected, className, children, ...rest }: NavbarItemProps) {
+function NavbarItem({ href, className, selected, children, ...rest }: NavbarItemProps) {
 	return (
 		<Link
 			className={cn('navbar--item', navbarItemStyles({ selected }), className)}
@@ -214,7 +213,7 @@ function NavbarItem({ href, selected, className, children, ...rest }: NavbarItem
 function NavbarItemLabel({ children, className }: NavbarItemLabelProps) {
 	return (
 		<Typography
-			className={cn('navbar--itemLabel' ,navbarItemLabelStyles({}), className)}
+			className={cn('navbar--itemLabel', navbarItemLabelStyles({}), className)}
 			variant="caption-1"
 		>
 			{children}
