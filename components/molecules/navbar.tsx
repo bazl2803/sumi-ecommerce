@@ -1,29 +1,16 @@
-'use client';
+'use client'
 
-import { cva, RecipeVariantProps, sva } from '@/styled-system/css';
-import { Typography } from '../atoms/typography';
-import Link from 'next/link';
-import { cn } from '@/utils';
-import { IconBase, IconType } from 'react-icons';
+import { cva, RecipeVariantProps } from '@/styled-system/css'
+import { Typography } from '../atoms/typography'
+import Link from 'next/link'
+import { cn } from '@/utils'
+import { IconType } from 'react-icons'
 
-/**
- * @description
- * Navbar is a navigation component that is used to navigate between different pages of the application.
- *
- * @slot Root - The root component of the navbar.
- * @slot Item - The item component of the navbar.
- *
- * @component Navbar
- * @slot Root
- * @slot Item
- *
- * @usage
- * <Navbar>
- *  <Navbar.Item label="Home" icon={<HomeIcon />} href="/home" />
- * </Navbar>
- */
+/* ----------------------------------------------------------------------------- */
+/* Styles                                                                        */
+/* ----------------------------------------------------------------------------- */
 
-const NavbarStyles = cva({
+const navbarListStyles = cva({
 	base: {
 		display: 'flex',
 		flexWrap: 'nowrap',
@@ -42,49 +29,9 @@ const NavbarStyles = cva({
 		direction: 'row',
 		fullWidth: false,
 	},
-});
+})
 
-function NavbarRoot({
-	className,
-	children,
-	direction,
-	fullWidth,
-	...rest
-}: React.ComponentPropsWithRef<'ul'> &
-	RecipeVariantProps<typeof NavbarStyles>) {
-	return (
-		<ul
-			className={cn(NavbarStyles({ direction, fullWidth }), className)}
-			{...rest}
-		>
-			{children}
-		</ul>
-	);
-}
-
-/**
- * @description
- * NavbarItem is a item component of the navbar.
- *
- * @component NavbarItem
- *
- * @param label - The label of the navbar item.
- * @param icon - The icon of the navbar item.
- * @param href - The href of the navbar item.
- * @param selected - The selected state of the navbar item.
- * @param className - The className of the navbar item.
- * @param rest - The rest of the navbar item.
- * @returns
- */
-
-interface NavbarItemProps
-	extends
-		React.ComponentPropsWithRef<'a'>,
-		RecipeVariantProps<typeof NavbarItemStyles> {
-	selected?: boolean;
-}
-
-const NavbarItemStyles = cva({
+const navbarItemStyles = cva({
 	base: {
 		display: 'flex',
 		flexDirection: 'column',
@@ -103,80 +50,9 @@ const NavbarItemStyles = cva({
 			},
 		},
 	},
-});
+})
 
-function NavbarItem({
-	href,
-	selected,
-	className,
-	children,
-	...rest
-}: NavbarItemProps) {
-	return (
-		<Link
-			className={cn(NavbarItemStyles({ selected }), className)}
-			href={href!}
-			{...rest}
-		>
-			{children}
-		</Link>
-	);
-}
-
-/**
- * @description
- * NavbarItemLabel is a item label component of the navbar.
- *
- * @component NavbarItemLabel
- *
- * @param className - The className of the navbar item.
- * @param children - The children of the navbar item.
- * @returns React.ReactNode
- */
-
-interface NavbarItemLabelProps {
-	children: React.ReactNode;
-	className?: string;
-}
-
-const NavbarItemLabelStyles = cva({
-	base: {
-		overflow: 'hidden',
-		textOverflow: 'ellipsis',
-		whiteSpace: 'nowrap',
-		width: 'full',
-		textAlign: 'center',
-	},
-});
-
-function NavbarItemLabel({ children, className }: NavbarItemLabelProps) {
-	return (
-		<Typography
-			className={cn(NavbarItemLabelStyles({}), className)}
-			variant='caption-1'
-		>
-			{children}
-		</Typography>
-	);
-}
-
-/**
- * @description
- * NavbarItemIcon is a item icon component of the navbar.
- *
- * @component NavbarItemIcon
- *
- * @param className - The className of the navbar item icon.
- * @param children - The children of the navbar item icon.
- * @returns React.ReactNode
- */
-
-interface NavbarItemIconProps {
-	Icon: IconType;
-	className?: string;
-}
-
-const NavbarItemIconStyles = cva({
+const navbarItemIconStyles = cva({
 	base: {
 		display: 'flex',
 		alignItems: 'center',
@@ -184,14 +60,102 @@ const NavbarItemIconStyles = cva({
 		height: 6,
 		width: 6,
 	},
-});
+})
 
-function NavbarItemIcon({ className, Icon }: NavbarItemIconProps) {
-	return <Icon className={cn(NavbarItemIconStyles({}), className)} />;
+const navbarItemLabelStyles = cva({
+	base: {
+		overflow: 'hidden',
+		textOverflow: 'ellipsis',
+		whiteSpace: 'nowrap',
+		width: 'full',
+		textAlign: 'center',
+	},
+})
+
+/* ----------------------------------------------------------------------------- */
+/* Types                                                                         */
+/* ----------------------------------------------------------------------------- */
+
+interface NavbarProps extends React.ComponentPropsWithRef<'nav'> {}
+
+interface NavbarListProps
+	extends React.ComponentPropsWithRef<'ul'>, RecipeVariantProps<typeof navbarListStyles> {}
+
+interface NavbarItemProps
+	extends React.ComponentPropsWithRef<'a'>, RecipeVariantProps<typeof navbarItemStyles> {
+	selected?: boolean
 }
 
-export const Navbar = Object.assign(NavbarRoot, {
-	Item: NavbarItem,
-	ItemLabel: NavbarItemLabel,
-	ItemIcon: NavbarItemIcon,
-});
+interface NavbarItemLabelProps {
+	children: React.ReactNode
+	className?: string
+}
+
+interface NavbarItemIconProps {
+	icon: IconType
+	className?: string
+}
+
+/* ----------------------------------------------------------------------------- */
+/* Navbar Root                                                                   */
+/* ----------------------------------------------------------------------------- */
+
+function Navbar({ className, children, ...rest }: NavbarProps) {
+	return <nav className={cn('navbar-root', className)} {...rest}>{children}</nav>
+}
+
+/* ----------------------------------------------------------------------------- */
+/* Navbar List                                                                   */
+/* ----------------------------------------------------------------------------- */
+
+function NavbarList({ className, children, direction, fullWidth, ...rest }: NavbarListProps) {
+	return (
+		<ul
+			className={cn(navbarListStyles({ direction, fullWidth }), className)}
+			{...rest}
+		>
+			{children}
+		</ul>
+	)
+}
+
+/* ----------------------------------------------------------------------------- */
+/* Navbar Item                                                                   */
+/* ----------------------------------------------------------------------------- */
+
+function NavbarItem({ href, selected, className, children, ...rest }: NavbarItemProps) {
+	return (
+		<Link
+			className={cn(navbarItemStyles({ selected }), className)}
+			href={href!}
+			{...rest}
+		>
+			{children}
+		</Link>
+	)
+}
+
+/* ----------------------------------------------------------------------------- */
+/* Navbar Item Label                                                             */
+/* ----------------------------------------------------------------------------- */
+
+function NavbarItemLabel({ children, className }: NavbarItemLabelProps) {
+	return (
+		<Typography
+			className={cn(navbarItemLabelStyles({}), className)}
+			variant="caption-1"
+		>
+			{children}
+		</Typography>
+	)
+}
+
+/* ----------------------------------------------------------------------------- */
+/* Navbar Item Icon                                                              */
+/* ----------------------------------------------------------------------------- */
+
+function NavbarItemIcon({ className, icon : Icon }: NavbarItemIconProps) {
+	return <Icon className={cn(navbarItemIconStyles({}), className)} />
+}
+
+export {Navbar, NavbarList, NavbarItem, NavbarItemLabel, NavbarItemIcon}
