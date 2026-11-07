@@ -1,5 +1,4 @@
 import { Navbar, NavbarItem, NavbarItemIcon, NavbarItemLabel, NavbarList } from '@/components'
-import { css } from '@/styled-system/css'
 import { LuHouse, LuList, LuSearch, LuShoppingCart, LuUser } from 'react-icons/lu'
 
 const items = [
@@ -32,7 +31,7 @@ const items = [
 
 export function StorefrontNavbar() {
 	return (
-		<Navbar>
+		<Navbar variant='floating'>
 			<NavbarList>
 				{items.map((item) => (
 					<NavbarItem

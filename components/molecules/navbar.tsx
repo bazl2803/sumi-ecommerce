@@ -5,6 +5,7 @@ import { Typography } from '../atoms/typography'
 import Link from 'next/link'
 import { cn } from '@/utils'
 import { IconType } from 'react-icons'
+import React from 'react'
 
 /* ----------------------------------------------------------------------------- */
 /* Styles                                                                        */
@@ -72,18 +73,54 @@ const navbarItemLabelStyles = cva({
 	},
 })
 
+const navbarStyles = cva({
+	base: {
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
+	variants: {
+		variant: {
+			// Lives in the normal flow: full width, flush with its container.
+			inset: {
+				width: 'full',
+			},
+			// Detached from the flow: sits above the content with a gap, radius and elevation.
+			floating: {
+				position: 'fixed',
+				insetInline: '3',
+				insetBlockEnd: '3',
+				width: 'auto',
+				paddingX: '3',
+				paddingY: '2',
+				borderRadius: 'full',
+				backgroundColor: 'neutral.50/75',
+				backdropFilter: 'auto',
+				backdropBlur: 'md',
+				borderWidth: '1px',
+				borderColor: 'neutral.200',
+				zIndex: 40,
+			},
+		},
+	},
+	defaultVariants: {
+		variant: 'inset',
+	},
+})
+
 /* ----------------------------------------------------------------------------- */
 /* Types                                                                         */
 /* ----------------------------------------------------------------------------- */
 
-interface NavbarProps extends React.ComponentPropsWithRef<'nav'> {}
+interface NavbarProps
+	extends React.ComponentPropsWithRef<'nav'>,
+		RecipeVariantProps<typeof navbarStyles> {}
 
 interface NavbarListProps
 	extends React.ComponentPropsWithRef<'ul'>, RecipeVariantProps<typeof navbarListStyles> {}
 
 interface NavbarItemProps
 	extends React.ComponentPropsWithRef<'a'>, RecipeVariantProps<typeof navbarItemStyles> {
-	selected?: boolean
 }
 
 interface NavbarItemLabelProps {
@@ -96,12 +133,47 @@ interface NavbarItemIconProps {
 	className?: string
 }
 
+interface NavbarContextValue {
+	selectedItem: string | null
+	setSelectedItem: (item: string) => void
+}
+
+/* ----------------------------------------------------------------------------- */
+/* Context                                                                       */
+/* ----------------------------------------------------------------------------- */
+
+const NavbarContext = React.createContext<NavbarContextValue | null>(null)
+
+const NavbarProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+	const [selectedItem, setSelectedItem] = React.useState<string | null>(null)
+
+	return (
+		<NavbarContext.Provider value={{ selectedItem, setSelectedItem }}>
+			{children}
+		</NavbarContext.Provider>
+	)
+}
+
+const useNavbarContext = () => {
+	const context = React.useContext(NavbarContext)
+	if (!context) {
+		throw new Error('useNavbarContext must be used within a NavbarProvider')
+	}
+}
+
 /* ----------------------------------------------------------------------------- */
 /* Navbar Root                                                                   */
 /* ----------------------------------------------------------------------------- */
 
-function Navbar({ className, children, ...rest }: NavbarProps) {
-	return <nav className={cn('navbar-root', className)} {...rest}>{children}</nav>
+function Navbar({ className, children, variant, ...rest }: NavbarProps) {
+	return (
+		<nav
+			className={cn('navbar', navbarStyles({ variant }), className)}
+			{...rest}
+		>
+			<NavbarProvider>{children}</NavbarProvider>
+		</nav>
+	)
 }
 
 /* ----------------------------------------------------------------------------- */
@@ -111,7 +183,7 @@ function Navbar({ className, children, ...rest }: NavbarProps) {
 function NavbarList({ className, children, direction, fullWidth, ...rest }: NavbarListProps) {
 	return (
 		<ul
-			className={cn(navbarListStyles({ direction, fullWidth }), className)}
+			className={cn('navbar--list', navbarListStyles({ direction, fullWidth }), className)}
 			{...rest}
 		>
 			{children}
@@ -126,7 +198,7 @@ function NavbarList({ className, children, direction, fullWidth, ...rest }: Navb
 function NavbarItem({ href, selected, className, children, ...rest }: NavbarItemProps) {
 	return (
 		<Link
-			className={cn(navbarItemStyles({ selected }), className)}
+			className={cn('navbar--item', navbarItemStyles({ selected }), className)}
 			href={href!}
 			{...rest}
 		>
@@ -142,7 +214,7 @@ function NavbarItem({ href, selected, className, children, ...rest }: NavbarItem
 function NavbarItemLabel({ children, className }: NavbarItemLabelProps) {
 	return (
 		<Typography
-			className={cn(navbarItemLabelStyles({}), className)}
+			className={cn('navbar--itemLabel' ,navbarItemLabelStyles({}), className)}
 			variant="caption-1"
 		>
 			{children}
@@ -154,8 +226,8 @@ function NavbarItemLabel({ children, className }: NavbarItemLabelProps) {
 /* Navbar Item Icon                                                              */
 /* ----------------------------------------------------------------------------- */
 
-function NavbarItemIcon({ className, icon : Icon }: NavbarItemIconProps) {
-	return <Icon className={cn(navbarItemIconStyles({}), className)} />
+function NavbarItemIcon({ className, icon: Icon }: NavbarItemIconProps) {
+	return <Icon className={cn('navbar--itemIcon', navbarItemIconStyles({}), className)} />
 }
 
-export {Navbar, NavbarList, NavbarItem, NavbarItemLabel, NavbarItemIcon}
+export { Navbar, NavbarList, NavbarItem, NavbarItemLabel, NavbarItemIcon }
