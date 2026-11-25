@@ -1,6 +1,12 @@
-import { Navbar, NavbarItem, NavbarItemIcon, NavbarItemLabel, NavbarList } from '@/components'
-import { usePathname } from 'next/navigation'
-import { LuHouse, LuList, LuSearch, LuShoppingCart, LuUser } from 'react-icons/lu'
+import { Navbar, NavbarItem, NavbarList } from '@/components';
+import { usePathname } from 'next/navigation';
+import {
+	LuEllipsis,
+	LuHouse,
+	LuList,
+	LuShoppingCart,
+	LuUser,
+} from 'react-icons/lu';
 
 const items = [
 	{
@@ -24,29 +30,27 @@ const items = [
 		href: '/profile',
 	},
 	{
-		label: 'Buscar',
-		icon: LuSearch,
-		href: '/search',
+		label: 'Más',
+		icon: LuEllipsis,
 	},
-]
+];
 
 export function StorefrontNavbar() {
-	const selectedItem = items.find((item) => item.href === usePathname())
+	const selectedItem = items.find((item) => item.href === usePathname());
 
 	return (
-		<Navbar variant='floating'>
+		<Navbar variant='floating' fullWidth>
 			<NavbarList>
-				{items.map((item) => (
+				{items.map((item, index) => (
 					<NavbarItem
+						key={index}
+						icon={item.icon}
+						label={item.label}
 						href={item.href}
-						key={item.label}
-						selected={selectedItem?.href === item.href}
-					>
-						<NavbarItemIcon icon={item.icon} />
-						<NavbarItemLabel>{item.label}</NavbarItemLabel>
-					</NavbarItem>
+						selected={item === selectedItem}
+					/>
 				))}
 			</NavbarList>
 		</Navbar>
-	)
+	);
 }

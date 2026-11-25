@@ -1,232 +1,257 @@
-'use client'
+'use client';
 
-import { cva, RecipeVariantProps } from '@/styled-system/css'
-import { Typography } from '../atoms/typography'
-import Link from 'next/link'
-import { cn } from '@/utils'
-import { IconType } from 'react-icons'
-import React from 'react'
+import { cva, RecipeVariantProps, sva } from '@/styled-system/css';
+import { Typography } from '../atoms/typography';
+import Link from 'next/link';
+import { cn } from '@/utils';
+import { IconType } from 'react-icons';
+import React from 'react';
 
 /* ----------------------------------------------------------------------------- */
-/* Styles                                                                        */
+/* Recipes                                                                       */
 /* ----------------------------------------------------------------------------- */
 
-const navbarListStyles = cva({
-	base: {
-		display: 'flex',
-		flexWrap: 'nowrap',
-		alignItems: 'center',
-		width: 'full',
-	},
-	variants: {
-		direction: {
-			row: { flexDirection: 'row' },
-			column: { flexDirection: 'column' },
-		},
-		fullWidth: {
-			true: { width: 'full' },
-		},
-	},
-	defaultVariants: {
-		direction: 'row',
-		fullWidth: false,
-	},
-})
+const navbarRecipe = cva({
+    base: {
+        width: 'full',
+    },
+});
 
-const navbarItemStyles = cva({
-	base: {
-		display: 'flex',
-		flexDirection: 'column',
-		alignItems: 'center',
-		justifyContent: 'center',
-		minWidth: 16,
-		width: 'full',
-		flexGrow: 1,
-		padding: 1,
-		gap: 1,
-		borderRadius: '4xl',
-	},
-	variants: {
-		selected: {
-			true: {
-				backgroundColor: 'yellow.400',
-				color: 'black',
-			},
-		},
-	},
-})
+const navbarListRecipe = cva({
+    base: {
+        display: 'flex',
+        flexWrap: 'nowrap',
+        alignItems: 'center',
+        marginInline: 'auto',
+        maxWidth: 'full',
+        gap: 1,
+    },
+    variants: {
+        orientation: {
+            horizontal: { flexOrientation: 'row' },
+            vertical: { flexOrientation: 'column' },
+        },
+        fullWidth: {
+            true: { width: 'auto' },
+            false: { width: 'fit' },
+        },
+        variant: {
+            inset: {
+                width: 'full',
+            },
+            floating: {
+                paddingX: 2,
+                paddingY: 2,
+                borderRadius: 'full',
+                backgroundColor: 'white/75',
+                backdropFilter: 'auto',
+                backdropBlur: 'md',
+                borderWidth: '1px',
+                borderColor: 'neutral.200',
+                zIndex: 40,
+                width: 'calc(100% - var(--spacing-4))',
+            },
+        },
+    },
+    defaultVariants: {
+        orientation: 'horizontal',
+        fullWidth: false,
+    },
+});
 
-const navbarItemIconStyles = cva({
-	base: {
-		display: 'flex',
-		alignItems: 'center',
-		justifyContent: 'center',
-		height: 6,
-		width: 6,
-	},
-})
-
-const navbarItemLabelStyles = cva({
-	base: {
-		overflow: 'hidden',
-		textOverflow: 'ellipsis',
-		whiteSpace: 'nowrap',
-		width: 'full',
-		textAlign: 'center',
-	},
-})
-
-const navbarStyles = cva({
-	base: {
-		display: 'flex',
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
-	variants: {
-		variant: {
-			// Lives in the normal flow: full width, flush with its container.
-			inset: {
-				width: 'full',
-			},
-			// Detached from the flow: sits above the content with a gap, radius and elevation.
-			floating: {
-				width: 'auto',
-				paddingX: 2,
-				paddingY: 2,
-				marginX: 2,
-				borderRadius: 'full',
-				backgroundColor: 'neutral.50/75',
-				backdropFilter: 'auto',
-				backdropBlur: 'md',
-				borderWidth: '1px',
-				borderColor: 'neutral.200',
-				zIndex: 40,
-			},
-		},
-	},
-	defaultVariants: {
-		variant: 'inset',
-	},
-})
+const navbarItemRecipe = sva({
+    slots: ['root', 'label', 'icon'],
+    base: {
+        root: {
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            minWidth: 16,
+            width: 'full',
+            flexGrow: 1,
+            paddingBlock: 2,
+            paddingInline: 1,
+            gap: 1,
+            borderRadius: '4xl',
+            userSelect: 'none',
+            overflow: 'hidden',
+            _hover: {
+                backgroundColor: 'secondary/20',
+                color: 'black',
+            },
+        },
+        icon: {
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            height: 6,
+            width: 6,
+        },
+        label: {
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+            width: 'full',
+            textAlign: 'center',
+        },
+    },
+    variants: {
+        selected: {
+            true: {
+                root: {
+                    backgroundColor: 'secondary',
+                    color: 'black',
+                },
+            },
+        },
+    },
+});
 
 /* ----------------------------------------------------------------------------- */
 /* Types                                                                         */
 /* ----------------------------------------------------------------------------- */
 
-interface NavbarProps
-	extends React.ComponentPropsWithRef<'nav'>, RecipeVariantProps<typeof navbarStyles> {}
+type NavbarVariant = 'inset' | 'floating';
+type NavbarOrientation = 'vertical' | 'horizontal';
 
-interface NavbarListProps
-	extends React.ComponentPropsWithRef<'ul'>, RecipeVariantProps<typeof navbarListStyles> {}
-
-interface NavbarItemProps
-	extends React.ComponentPropsWithRef<'a'>, RecipeVariantProps<typeof navbarItemStyles> {}
-
-interface NavbarItemLabelProps {
-	children: React.ReactNode
-	className?: string
+interface NavbarProps extends React.ComponentPropsWithRef<'nav'> {
+    variant?: NavbarVariant;
+    orientation?: NavbarOrientation;
+    fullWidth?: boolean;
 }
 
-interface NavbarItemIconProps {
-	icon: IconType
-	className?: string
+interface NavbarListProps extends React.ComponentPropsWithRef<'ul'> {}
+
+interface NavbarItemProps
+    extends
+        React.ComponentPropsWithRef<'a'>,
+        RecipeVariantProps<typeof navbarItemRecipe> {
+    icon?: IconType;
+    label?: string;
+    href?: string;
 }
 
 interface NavbarContextValue {
-	selectedItem: string | null
-	setSelectedItem: (item: string) => void
+    variant?: NavbarVariant;
+    setVariant?: (variant: NavbarVariant) => void;
+    orientation?: NavbarOrientation;
+    setOrientation?: (Orientation: NavbarOrientation) => void;
+    fullWidth?: boolean;
+    setFullWidth?: (fullWidth: boolean) => void;
 }
 
 /* ----------------------------------------------------------------------------- */
 /* Context                                                                       */
 /* ----------------------------------------------------------------------------- */
 
-const NavbarContext = React.createContext<NavbarContextValue | null>(null)
+const NavbarContext = React.createContext<NavbarContextValue | null>(null);
 
-const NavbarProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-	const [selectedItem, setSelectedItem] = React.useState<string | null>(null)
-
-	return (
-		<NavbarContext.Provider value={{ selectedItem, setSelectedItem }}>
-			{children}
-		</NavbarContext.Provider>
-	)
-}
+const NavbarProvider: React.FC<{
+    value: NavbarContextValue;
+    children: React.ReactNode;
+}> = ({ children, value }) => {
+    return (
+        <NavbarContext.Provider value={value}>
+            {children}
+        </NavbarContext.Provider>
+    );
+};
 
 const useNavbarContext = () => {
-	const context = React.useContext(NavbarContext)
-	if (!context) {
-		throw new Error('useNavbarContext must be used within a NavbarProvider')
-	}
+    const context = React.useContext(NavbarContext);
+    if (!context) {
+        throw new Error(
+            'useNavbarContext must be used within a NavbarProvider',
+        );
+    }
+    return context;
+};
+
+/* ----------------------------------------------------------------------------- */
+/* Components                                                                    */
+/* ----------------------------------------------------------------------------- */
+
+export function Navbar({
+    className,
+    children,
+    variant: variantProp,
+    orientation: orientationProp,
+    fullWidth: fullWidthProp,
+    ...rest
+}: NavbarProps) {
+    const [variant, setVariant] = React.useState<NavbarVariant>(
+        variantProp || 'inset',
+    );
+
+    const [orientation, setOrientation] = React.useState<NavbarOrientation>(
+        orientationProp || 'horizontal',
+    );
+
+    const [fullWidth, setFullWidth] = React.useState<boolean>(fullWidthProp || false);
+
+    return (
+        <nav
+            className={cn(
+                'navbar',
+                navbarRecipe({ variant, orientation }),
+                className,
+            )}
+            {...rest}
+        >
+            <NavbarProvider
+                value={{
+                    variant,
+                    setVariant,
+                    orientation,
+                    setOrientation,
+                    fullWidth,
+                    setFullWidth,
+                }}
+            >
+                {children}
+            </NavbarProvider>
+        </nav>
+    );
 }
 
-/* ----------------------------------------------------------------------------- */
-/* Navbar Root                                                                   */
-/* ----------------------------------------------------------------------------- */
-
-function Navbar({ className, children, variant, ...rest }: NavbarProps) {
-	return (
-		<nav
-			className={cn('navbar', navbarStyles({ variant }), className)}
-			{...rest}
-		>
-			<NavbarProvider>{children}</NavbarProvider>
-		</nav>
-	)
+export function NavbarList({ className, children, ...rest }: NavbarListProps) {
+    const { variant, orientation, fullWidth } = useNavbarContext();
+    return (
+        <ul
+            className={cn(
+                'navbar--list',
+                navbarListRecipe({ variant, orientation, fullWidth }),
+                className,
+            )}
+            {...rest}
+        >
+            {children}
+        </ul>
+    );
 }
 
-/* ----------------------------------------------------------------------------- */
-/* Navbar List                                                                   */
-/* ----------------------------------------------------------------------------- */
+export function NavbarItem({
+    href,
+    className,
+    selected,
+    icon: Icon,
+    label,
+    children,
+    ...rest
+}: NavbarItemProps) {
+    const recipe = navbarItemRecipe({ selected }); // Ensure Recipe are generated for the selected state
 
-function NavbarList({ className, children, direction, fullWidth, ...rest }: NavbarListProps) {
-	return (
-		<ul
-			className={cn('navbar--list', navbarListStyles({ direction, fullWidth }), className)}
-			{...rest}
-		>
-			{children}
-		</ul>
-	)
+    return (
+        <Link
+            className={cn('navbar--item', recipe.root, className)}
+            href={href || '#'}
+            {...rest}
+        >
+            {Icon && <Icon className={recipe.icon} />}
+            <Typography className={recipe.label} variant="caption-2">
+                {label}
+            </Typography>
+        </Link>
+    );
 }
-
-/* ----------------------------------------------------------------------------- */
-/* Navbar Item                                                                   */
-/* ----------------------------------------------------------------------------- */
-
-function NavbarItem({ href, className, selected, children, ...rest }: NavbarItemProps) {
-	return (
-		<Link
-			className={cn('navbar--item', navbarItemStyles({ selected }), className)}
-			href={href!}
-			{...rest}
-		>
-			{children}
-		</Link>
-	)
-}
-
-/* ----------------------------------------------------------------------------- */
-/* Navbar Item Label                                                             */
-/* ----------------------------------------------------------------------------- */
-
-function NavbarItemLabel({ children, className }: NavbarItemLabelProps) {
-	return (
-		<Typography
-			className={cn('navbar--itemLabel', navbarItemLabelStyles({}), className)}
-			variant="caption-1"
-		>
-			{children}
-		</Typography>
-	)
-}
-
-/* ----------------------------------------------------------------------------- */
-/* Navbar Item Icon                                                              */
-/* ----------------------------------------------------------------------------- */
-
-function NavbarItemIcon({ className, icon: Icon }: NavbarItemIconProps) {
-	return <Icon className={cn('navbar--itemIcon', navbarItemIconStyles({}), className)} />
-}
-
-export { Navbar, NavbarList, NavbarItem, NavbarItemLabel, NavbarItemIcon }

@@ -1,29 +1,33 @@
+import { cn } from '@/utils';
 import './globals.css';
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Inter } from 'next/font/google';
+import { css } from '@/styled-system/css';
 
-const geistSans = Geist({
-	variable: '--font-geist-sans',
-	subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-	variable: '--font-geist-mono',
-	subsets: ['latin'],
-});
+const inter = Inter({
+    variable: '--font-sans',
+    subsets: ['latin'],
+})
 
 export const metadata: Metadata = {
-	title: 'Suministros Eléctricos',
-	description: 'Venta de insumos eléctricos',
+    title: 'Suministros Eléctricos',
+    description: 'Venta de insumos eléctricos',
 };
 
+const RootLayoutRecipe = css({
+    backgroundColor: 'neutral.100',
+});
+
 export default function RootLayout({ children }: LayoutProps<'/'>) {
-	return (
-		<html
-			lang='es-SV'
-			className={`${geistSans.variable} ${geistMono.variable}`}
-		>
-			<body>{children}</body>
-		</html>
-	);
+    return (
+        <html
+            lang="es-SV"
+            className={cn(
+                RootLayoutRecipe,
+                inter.variable,
+            )}
+        >
+            <body>{children}</body>
+        </html>
+    );
 }

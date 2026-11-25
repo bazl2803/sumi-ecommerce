@@ -1,5 +1,9 @@
-import { css } from '@/styled-system/css';
+import { BackofficeShell } from './_components/backoffice-shell';
 
-export default function BackofficeLayout({ children }: LayoutProps<'/'>) {
-	return <div className={css({ bg: 'neutral.50' })}>{children}</div>;
+export default function BackofficeLayout({
+    children,
+}: {
+    children: React.ReactNode;
+}) {
+    return <BackofficeShell>{children}</BackofficeShell>;
 }

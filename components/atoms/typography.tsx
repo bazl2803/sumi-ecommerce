@@ -4,65 +4,65 @@ import clsx from 'clsx';
 /* --------------------- typography styles ---------------------*/
 const TypographyStyles = cva({
 	base: {
-		fontFamily: 'geist',
+		fontFamily: 'var(--font-sans)',
 		color: { base: 'black.100', _osDark: 'black.500' },
 	},
 	variants: {
 		variant: {
 			'large-title': {
-				fontWeight: 'Regular',
-				fontSize: '26pt',
-				lineHeight: '32pt',
+				fontWeight: 400,
+				fontSize: '2.125rem',
+				lineHeight: '2.5625rem',
 			},
 			'title-1': {
-				fontWeight: 'Regular',
-				fontSize: '22pt',
-				lineHeight: '26pt',
+				fontWeight: 400,
+				fontSize: '1.75rem',
+				lineHeight: '2.125rem',
 			},
 			'title-2': {
-				fontWeight: 'Regular',
-				fontSize: '17pt',
-				lineHeight: '22pt',
+				fontWeight: 400,
+				fontSize: '1.375rem',
+				lineHeight: '1.75rem',
 			},
 			'title-3': {
-				fontWeight: 'Regular',
-				fontSize: '15pt',
-				lineHeight: '20pt',
+				fontWeight: 400,
+				fontSize: '1.25rem',
+				lineHeight: '1.5625rem',
 			},
 			headline: {
-				fontWeight: 'Bold',
-				fontSize: '13pt',
-				lineHeight: '16pt',
+				fontWeight: 600,
+				fontSize: '1.0625rem',
+				lineHeight: '1.375rem',
 			},
 			body: {
-				fontWeight: 'Regular',
-				fontSize: '13pt',
-				lineHeight: '16pt',
+				fontWeight: 400,
+				fontSize: '1.0625rem',
+				lineHeight: '1.375rem',
 			},
 			callout: {
-				fontWeight: 'Regular',
-				fontSize: '12pt',
-				lineHeight: '15pt',
+				fontWeight: 400,
+				fontSize: '1rem',
+				lineHeight: '1.3125rem',
 			},
-			subheadline: {
-				fontWeight: 'Regular',
-				fontSize: '11pt',
-				lineHeight: '14pt',
+			subhead: {
+				fontWeight: 400,
+				fontSize: '0.9375rem',
+				lineHeight: '1.25rem',
 			},
 			footnote: {
-				fontWeight: 'Regular',
-				fontSize: '10pt',
-				lineHeight: '13pt',
+				fontWeight: 400,
+				fontSize: '0.8125rem',
+				lineHeight: '1.125rem',
 			},
 			'caption-1': {
-				fontWeight: 'Regular',
-				fontSize: '10pt',
-				lineHeight: '13pt',
+				fontWeight: 400,
+				fontSize: '0.75rem',
+				lineHeight: '1rem',
 			},
 			'caption-2': {
-				fontWeight: 'Regular',
-				fontSize: '10pt',
-				lineHeight: '13pt',
+				fontWeight: 400,
+				fontSize: '0.6875rem',
+				lineHeight: '0.8125rem',
 			},
 		},
 		emphasized: {
@@ -75,77 +75,77 @@ const TypographyStyles = cva({
 			variant: 'large-title',
 			emphasized: true,
 			css: {
-				fontWeight: 'bold',
+				fontWeight: 700,
 			},
 		},
 		{
 			variant: 'title-1',
 			emphasized: true,
 			css: {
-				fontWeight: 'bold',
+				fontWeight: 700,
 			},
 		},
 		{
 			variant: 'title-2',
 			emphasized: true,
 			css: {
-				fontWeight: 'bold',
+				fontWeight: 700,
 			},
 		},
 		{
 			variant: 'title-3',
 			emphasized: true,
 			css: {
-				fontWeight: 'semibold',
+				fontWeight: 600,
 			},
 		},
 		{
 			variant: 'headline',
 			emphasized: true,
 			css: {
-				fontWeight: 'heavy',
+				fontWeight: 600,
 			},
 		},
 		{
 			variant: 'body',
 			emphasized: true,
 			css: {
-				fontWeight: 'semibold',
+				fontWeight: 600,
 			},
 		},
 		{
 			variant: 'callout',
 			emphasized: true,
 			css: {
-				fontWeight: 'semibold',
+				fontWeight: 600,
 			},
 		},
 		{
-			variant: 'subheadline',
+			variant: 'subhead',
 			emphasized: true,
 			css: {
-				fontWeight: 'semibold',
+				fontWeight: 600,
 			},
 		},
 		{
 			variant: 'footnote',
 			emphasized: true,
 			css: {
-				fontWeight: 'semibold',
+				fontWeight: 600,
 			},
 		},
 		{
 			variant: 'caption-1',
 			emphasized: true,
 			css: {
-				fontWeight: 'medium',
+				fontWeight: 600,
 			},
 		},
 		{
 			variant: 'caption-2',
 			emphasized: true,
 			css: {
-				fontWeight: 'semibold',
+				fontWeight: 600,
 			},
 		},
 	],
